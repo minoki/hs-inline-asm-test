@@ -1,0 +1,75 @@
+name:                inline-asm-test
+version:             0.1.0.0
+github:              "minoki/hs-inline-asm-test"
+license:             BSD3
+author:              "ARATA Mizuki"
+maintainer:          "minorinoki@gmail.com"
+copyright:           "2019 ARATA Mizuki"
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+# Metadata used when publishing your package
+# synopsis:            Short description of your package
+# category:            Web
+
+# To avoid duplicated efforts in documentation and dealing with the
+# complications of embedding Haddock markup inside cabal files, it is
+# common to point users to the README.md file.
+description:         Please see the README on GitHub at <https://github.com/minoki/inline-asm-test#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- ghc-prim
+- wide-word
+- inline-c
+
+library:
+  source-dirs: src
+  c-sources:
+  - cbits/wideningmul.c
+  - cbits/mulq-prim.s
+  - cbits/binarypolymul-portable.c
+  - cbits/binarypolymul-clmul.c
+  - cbits/clmul-prim.s
+  ghc-options: -optc -mpclmul # for inline-c
+  cc-options: -mpclmul # for cbits/binarypolymul-clmul.c
+
+executables:
+  inline-asm-test-exe:
+    main:                Main.hs
+    source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - inline-asm-test
+
+benchmarks:
+  bench-widening-mul:
+    main: Bench.hs
+    source-dirs: bench-widening-mul
+    dependencies:
+    - inline-asm-test
+    - gauge
+
+  bench-binary-poly-mul:
+    main: Bench.hs
+    source-dirs: bench-binary-poly-mul
+    dependencies:
+    - inline-asm-test
+    - gauge
+
+
+tests:
+  inline-asm-test-test:
+    main:                Spec.hs
+    source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - inline-asm-test
