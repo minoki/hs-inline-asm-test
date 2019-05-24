@@ -10,6 +10,7 @@ import qualified BinaryPolyMul.Portable.CFFI.Safe
 import qualified BinaryPolyMul.Portable.CFFI.Unsafe
 import qualified BinaryPolyMul.Portable.InlineC.Safe
 import qualified BinaryPolyMul.Portable.InlineC.Unsafe
+import qualified BinaryPolyMul.Portable.Prim
 import qualified BinaryPolyMul.CLMUL.CFFI.Safe
 import qualified BinaryPolyMul.CLMUL.CFFI.Unsafe
 import qualified BinaryPolyMul.CLMUL.InlineC.Safe
@@ -36,6 +37,7 @@ main = do
   putStrLn $ showHex (WM.InlineC.Unsafe.wideningMulCallingTwice 0xdeadbeef12345678 0xc0ffee1234567890) ""
   putStrLn $ showHex (WM.InlineC.Unsafe.wideningMulCallingTwicePure 0xdeadbeef12345678 0xc0ffee1234567890) ""
   putStrLn $ showHex (WM.Prim.wideningMul 0xdeadbeef12345678 0xc0ffee1234567890) ""
+  putStrLn $ showHex (WM.Prim.wideningMulThunk 0xdeadbeef12345678 0xc0ffee1234567890) ""
 
   putStrLn $ showHex (BinaryPolyMul.binaryPolyMul 0xdead 0xbeef) ""
   putStrLn $ showHex (BinaryPolyMul.binaryPolyMul64_karatsuba 0xdead 0xbeef) ""
@@ -48,5 +50,7 @@ main = do
   putStrLn $ showHex (BinaryPolyMul.Portable.CFFI.Safe.binaryPolyMulWithPtr 0xdeadbeef12345678 0xc0ffee1234567890) ""
   putStrLn $ showHex (BinaryPolyMul.Portable.CFFI.Unsafe.binaryPolyMulWithPtr 0xdeadbeef12345678 0xc0ffee1234567890) ""
   putStrLn $ showHex (BinaryPolyMul.Portable.InlineC.Safe.binaryPolyMulWithPtr 0xdeadbeef12345678 0xc0ffee1234567890) ""
+  putStrLn $ showHex (BinaryPolyMul.Portable.Prim.binaryPolyMulThunk 0xdeadbeef12345678 0xc0ffee1234567890) ""
   putStrLn $ showHex (BinaryPolyMul.CLMUL.CFFI.Unsafe.binaryPolyMulWithPtr 0xdeadbeef12345678 0xc0ffee1234567890) ""
   putStrLn $ showHex (BinaryPolyMul.CLMUL.Prim.binaryPolyMul 0xdeadbeef12345678 0xc0ffee1234567890) ""
+  putStrLn $ showHex (BinaryPolyMul.CLMUL.Prim.binaryPolyMulThunk 0xdeadbeef12345678 0xc0ffee1234567890) ""

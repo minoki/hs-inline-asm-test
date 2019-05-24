@@ -52,4 +52,5 @@ main = do
         ]
       ]
     , bench "foreign import prim" $ nf (uncurry WM.Prim.wideningMul) arg
+    , bench "prim thunk" $ nf (uncurry WM.Prim.wideningMulThunk) arg
     ]

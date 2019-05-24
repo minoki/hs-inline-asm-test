@@ -38,3 +38,15 @@ extern uint64_t binaryPolyMul_clmul_hi(uint64_t a, uint64_t b)
     u.m128 = _mm_clmulepi64_si128(ax, bx, 0);
     return u.u64arr[1];
 }
+
+extern unsigned __int128 binaryPolyMul_clmul_uint128(uint64_t a, uint64_t b)
+{
+    __m128i ax = {a, 0};
+    __m128i bx = {b, 0};
+    union {
+        __m128i m128;
+        unsigned __int128 u128;
+    } u;
+    u.m128 = _mm_clmulepi64_si128(ax, bx, 0);
+    return u.u128;
+}

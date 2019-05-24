@@ -13,3 +13,11 @@ wideningMul :: Word64 -> Word64 -> Word128
 wideningMul (W64# a) (W64# b)
   = case wideningMul_prim# a b of
       (# lo, hi #) -> Word128 (W64# hi) (W64# lo)
+
+foreign import prim "wideningMul_thunk"
+  wideningMul_thunk# :: Word# -> Word# -> (# Word#, Word# #)
+
+wideningMulThunk :: Word64 -> Word64 -> Word128
+wideningMulThunk (W64# a) (W64# b)
+  = case wideningMul_thunk# a b of
+      (# lo, hi #) -> Word128 (W64# hi) (W64# lo)

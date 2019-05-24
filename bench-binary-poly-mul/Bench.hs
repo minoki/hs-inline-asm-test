@@ -4,6 +4,7 @@ import qualified BinaryPolyMul.Portable.CFFI.Safe
 import qualified BinaryPolyMul.Portable.CFFI.Unsafe
 import qualified BinaryPolyMul.Portable.InlineC.Safe
 import qualified BinaryPolyMul.Portable.InlineC.Unsafe
+import qualified BinaryPolyMul.Portable.Prim
 import qualified BinaryPolyMul.CLMUL.CFFI.Safe
 import qualified BinaryPolyMul.CLMUL.CFFI.Unsafe
 import qualified BinaryPolyMul.CLMUL.InlineC.Safe
@@ -35,6 +36,7 @@ main = do
         [ bench "pointer/unsafePerformIO" $ nf (uncurry BinaryPolyMul.Portable.InlineC.Unsafe.binaryPolyMulWithPtr) arg
         , bench "calling twice" $ nf (uncurry BinaryPolyMul.Portable.InlineC.Unsafe.binaryPolyMulCallingTwice) arg
         ]
+      , bench "prim thunk" $ nf (uncurry BinaryPolyMul.Portable.Prim.binaryPolyMulThunk) arg
       ]
     , bgroup "CLMUL"
       [ bgroup "safe FFI"
@@ -54,5 +56,6 @@ main = do
         , bench "calling twice" $ nf (uncurry BinaryPolyMul.CLMUL.InlineC.Unsafe.binaryPolyMulCallingTwice) arg
         ]
       , bench "foreign import prim" $ nf (uncurry BinaryPolyMul.CLMUL.Prim.binaryPolyMul) arg
+      , bench "prim thunk" $ nf (uncurry BinaryPolyMul.CLMUL.Prim.binaryPolyMulThunk) arg
       ]
     ]
