@@ -1,4 +1,4 @@
-import Gauge.Main
+import Criterion.Main
 import qualified BinaryPolyMul
 import qualified BinaryPolyMul.Portable.CFFI.Safe
 import qualified BinaryPolyMul.Portable.CFFI.Unsafe

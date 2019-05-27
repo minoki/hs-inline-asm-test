@@ -54,14 +54,14 @@ benchmarks:
     source-dirs: bench-widening-mul
     dependencies:
     - inline-asm-test
-    - gauge
+    - criterion
 
   bench-binary-poly-mul:
     main: Bench.hs
     source-dirs: bench-binary-poly-mul
     dependencies:
     - inline-asm-test
-    - gauge
+    - criterion
 
 
 tests:

@@ -1,4 +1,4 @@
-import Gauge.Main
+import Criterion.Main
 import qualified WideningMul as WM
 import qualified WideningMul.CFFI.Safe as WM.CFFI.Safe
 import qualified WideningMul.CFFI.Unsafe as WM.CFFI.Unsafe
