@@ -1,0 +1,148 @@
+Benchmark bench-binary-poly-mul: RUNNING...
+benchmarking portable/pure Haskell impl
+time                 183.8 ns   (182.8 ns .. 184.9 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 184.0 ns   (183.0 ns .. 185.5 ns)
+std dev              3.706 ns   (2.560 ns .. 5.771 ns)
+variance introduced by outliers: 27% (moderately inflated)
+                                     
+benchmarking portable/pure Haskell impl (Karatsuba)
+time                 143.9 ns   (143.3 ns .. 144.6 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 144.1 ns   (143.5 ns .. 144.9 ns)
+std dev              2.185 ns   (1.548 ns .. 3.271 ns)
+variance introduced by outliers: 17% (moderately inflated)
+                                     
+benchmarking portable/safe FFI/pointer/unsafePerformIO
+time                 296.6 ns   (295.1 ns .. 298.4 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 296.2 ns   (294.9 ns .. 297.8 ns)
+std dev              4.712 ns   (3.589 ns .. 6.197 ns)
+variance introduced by outliers: 18% (moderately inflated)
+                                     
+benchmarking portable/safe FFI/calling twice
+time                 454.5 ns   (452.9 ns .. 456.2 ns)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 454.8 ns   (453.1 ns .. 456.7 ns)
+std dev              6.033 ns   (4.510 ns .. 8.086 ns)
+variance introduced by outliers: 13% (moderately inflated)
+                                     
+benchmarking portable/unsafe FFI/pointer/unsafePerformIO
+time                 143.5 ns   (143.1 ns .. 143.9 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 143.7 ns   (143.3 ns .. 144.5 ns)
+std dev              1.844 ns   (1.283 ns .. 2.678 ns)
+variance introduced by outliers: 13% (moderately inflated)
+                                     
+benchmarking portable/unsafe FFI/calling twice
+time                 213.8 ns   (212.9 ns .. 214.7 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 214.1 ns   (213.1 ns .. 215.7 ns)
+std dev              4.129 ns   (2.556 ns .. 7.119 ns)
+variance introduced by outliers: 25% (moderately inflated)
+                                     
+benchmarking portable/inline-c (safe FFI)/pointer/unsafePerformIO
+time                 286.3 ns   (285.3 ns .. 287.3 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 287.4 ns   (285.9 ns .. 289.9 ns)
+std dev              6.409 ns   (4.499 ns .. 10.52 ns)
+variance introduced by outliers: 30% (moderately inflated)
+                                     
+benchmarking portable/inline-c (safe FFI)/calling twice
+time                 461.4 ns   (458.1 ns .. 465.7 ns)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 459.2 ns   (457.7 ns .. 461.4 ns)
+std dev              5.971 ns   (4.267 ns .. 9.247 ns)
+variance introduced by outliers: 12% (moderately inflated)
+                                     
+benchmarking portable/inline-c (unsafe FFI)/pointer/unsafePerformIO
+time                 150.1 ns   (149.5 ns .. 150.8 ns)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 150.9 ns   (149.8 ns .. 152.6 ns)
+std dev              4.617 ns   (2.675 ns .. 7.263 ns)
+variance introduced by outliers: 46% (moderately inflated)
+                                     
+benchmarking portable/inline-c (unsafe FFI)/calling twice
+time                 220.0 ns   (218.6 ns .. 222.4 ns)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 219.8 ns   (218.9 ns .. 221.3 ns)
+std dev              3.529 ns   (2.526 ns .. 5.496 ns)
+variance introduced by outliers: 18% (moderately inflated)
+                                     
+benchmarking portable/prim thunk     
+time                 128.6 ns   (128.1 ns .. 129.2 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 129.0 ns   (128.5 ns .. 129.6 ns)
+std dev              1.840 ns   (1.440 ns .. 2.385 ns)
+variance introduced by outliers: 16% (moderately inflated)
+                                     
+benchmarking CLMUL/safe FFI/pointer/unsafePerformIO
+time                 179.2 ns   (178.8 ns .. 179.7 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 179.5 ns   (179.0 ns .. 180.3 ns)
+std dev              2.064 ns   (1.471 ns .. 2.979 ns)
+variance introduced by outliers: 10% (moderately inflated)
+                                     
+benchmarking CLMUL/safe FFI/calling twice
+time                 286.9 ns   (286.3 ns .. 287.5 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 287.5 ns   (286.7 ns .. 288.9 ns)
+std dev              3.539 ns   (2.570 ns .. 5.827 ns)
+variance introduced by outliers: 12% (moderately inflated)
+                                     
+benchmarking CLMUL/unsafe FFI/pointer/unsafePerformIO
+time                 30.17 ns   (30.08 ns .. 30.26 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 30.17 ns   (30.08 ns .. 30.30 ns)
+std dev              358.5 ps   (270.2 ps .. 538.3 ps)
+variance introduced by outliers: 13% (moderately inflated)
+                                     
+benchmarking CLMUL/unsafe FFI/calling twice
+time                 11.75 ns   (11.72 ns .. 11.79 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 11.77 ns   (11.74 ns .. 11.81 ns)
+std dev              128.2 ps   (97.22 ps .. 174.7 ps)
+variance introduced by outliers: 12% (moderately inflated)
+                                     
+benchmarking CLMUL/inline-c (safe FFI)/pointer/unsafePerformIO
+time                 189.6 ns   (186.6 ns .. 194.8 ns)
+                     0.998 R²   (0.995 R² .. 1.000 R²)
+mean                 187.9 ns   (186.8 ns .. 190.3 ns)
+std dev              5.282 ns   (2.527 ns .. 9.690 ns)
+variance introduced by outliers: 41% (moderately inflated)
+                                     
+benchmarking CLMUL/inline-c (safe FFI)/calling twice
+time                 286.0 ns   (285.3 ns .. 286.7 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 286.1 ns   (285.5 ns .. 286.9 ns)
+std dev              2.339 ns   (1.764 ns .. 3.038 ns)
+                                     
+benchmarking CLMUL/inline-c (unsafe FFI)/pointer/unsafePerformIO
+time                 37.90 ns   (37.77 ns .. 38.07 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 38.01 ns   (37.84 ns .. 38.24 ns)
+std dev              631.4 ps   (496.4 ps .. 872.9 ps)
+variance introduced by outliers: 22% (moderately inflated)
+                                     
+benchmarking CLMUL/inline-c (unsafe FFI)/calling twice
+time                 13.84 ns   (13.79 ns .. 13.90 ns)
+                     1.000 R²   (1.000 R² .. 1.000 R²)
+mean                 13.81 ns   (13.78 ns .. 13.87 ns)
+std dev              143.0 ps   (104.1 ps .. 220.6 ps)
+variance introduced by outliers: 10% (moderately inflated)
+                                     
+benchmarking CLMUL/foreign import prim
+time                 10.36 ns   (10.27 ns .. 10.47 ns)
+                     0.999 R²   (0.997 R² .. 1.000 R²)
+mean                 10.43 ns   (10.33 ns .. 10.63 ns)
+std dev              476.3 ps   (297.4 ps .. 693.0 ps)
+variance introduced by outliers: 70% (severely inflated)
+                                     
+benchmarking CLMUL/prim thunk        
+time                 11.60 ns   (11.54 ns .. 11.70 ns)
+                     1.000 R²   (0.999 R² .. 1.000 R²)
+mean                 11.59 ns   (11.56 ns .. 11.65 ns)
+std dev              155.6 ps   (109.2 ps .. 246.9 ps)
+variance introduced by outliers: 17% (moderately inflated)
+                                     
+Benchmark bench-binary-poly-mul: FINISH
