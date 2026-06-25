@@ -19,3 +19,17 @@ SYMBOL(binaryPolyMul_prim):
 	movq (%rbp),%rax
 	jmp *(%rax)
 #endif
+
+	.globl SYMBOL(binaryPolyMul_prim_xmm)
+SYMBOL(binaryPolyMul_prim_xmm):
+	## 第一引数：%rbx
+	## 第二引数：%r14
+	movq %rbx, %xmm1
+	movq %r14, %xmm2
+	pclmulqdq $0, %xmm2, %xmm1 ## %xmm2の下位64ビットと%xmm1の下位64ビットを計算して、結果を%xmm1に入れる
+#if defined(TABLES_NEXT_TO_CODE)
+	jmp *(%rbp)
+#else
+	movq (%rbp),%rax
+	jmp *(%rax)
+#endif

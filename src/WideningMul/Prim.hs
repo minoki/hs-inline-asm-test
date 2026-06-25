@@ -2,7 +2,7 @@
 {-# LANGUAGE UnliftedFFITypes #-}
 {-# LANGUAGE GHCForeignImportPrim #-}
 module WideningMul.Prim where
-import GHC.Exts (Word64#)
+import GHC.Exts (Word64#, Word64X2#, unpackWord64X2#)
 import GHC.Word (Word64(W64#))
 import Data.WideWord.Word128
 
@@ -20,4 +20,12 @@ foreign import prim "wideningMul_thunk"
 wideningMulThunk :: Word64 -> Word64 -> Word128
 wideningMulThunk (W64# a) (W64# b)
   = case wideningMul_thunk# a b of
+      (# lo, hi #) -> Word128 (W64# hi) (W64# lo)
+
+foreign import prim "wideningMul_prim_xmm"
+  wideningMul_prim_xmm# :: Word64# -> Word64# -> Word64X2#
+
+wideningMulXMM :: Word64 -> Word64 -> Word128
+wideningMulXMM (W64# a) (W64# b)
+  = case unpackWord64X2# (wideningMul_prim_xmm# a b) of
       (# lo, hi #) -> Word128 (W64# hi) (W64# lo)

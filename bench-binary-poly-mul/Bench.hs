@@ -41,11 +41,17 @@ main = do
     , bgroup "CLMUL"
       [ bgroup "safe FFI"
         [ bench "pointer/unsafePerformIO" $ nf (uncurry BinaryPolyMul.CLMUL.CFFI.Safe.binaryPolyMulWithPtr) arg
+        , bench "pointer/unsafeDupablePerformIO" $ nf (uncurry BinaryPolyMul.CLMUL.CFFI.Safe.binaryPolyMulWithPtrDupable) arg
+        , bench "pointer/accursedUnutterablePerformIO" $ nf (uncurry BinaryPolyMul.CLMUL.CFFI.Safe.binaryPolyMulWithPtrInline) arg
         , bench "calling twice" $ nf (uncurry BinaryPolyMul.CLMUL.CFFI.Safe.binaryPolyMulCallingTwice) arg
+        , bench "XMM" $ nf (uncurry BinaryPolyMul.CLMUL.CFFI.Safe.binaryPolyMulXMM) arg
         ]
       , bgroup "unsafe FFI"
         [ bench "pointer/unsafePerformIO" $ nf (uncurry BinaryPolyMul.CLMUL.CFFI.Unsafe.binaryPolyMulWithPtr) arg
+        , bench "pointer/unsafeDupablePerformIO" $ nf (uncurry BinaryPolyMul.CLMUL.CFFI.Unsafe.binaryPolyMulWithPtrDupable) arg
+        , bench "pointer/accursedUnutterablePerformIO" $ nf (uncurry BinaryPolyMul.CLMUL.CFFI.Unsafe.binaryPolyMulWithPtrInline) arg
         , bench "calling twice" $ nf (uncurry BinaryPolyMul.CLMUL.CFFI.Unsafe.binaryPolyMulCallingTwice) arg
+        , bench "XMM" $ nf (uncurry BinaryPolyMul.CLMUL.CFFI.Unsafe.binaryPolyMulXMM) arg
         ]
       , bgroup "inline-c (safe FFI)"
         [ bench "pointer/unsafePerformIO" $ nf (uncurry BinaryPolyMul.CLMUL.InlineC.Safe.binaryPolyMulWithPtr) arg
@@ -57,5 +63,6 @@ main = do
         ]
       , bench "foreign import prim" $ nf (uncurry BinaryPolyMul.CLMUL.Prim.binaryPolyMul) arg
       , bench "prim thunk" $ nf (uncurry BinaryPolyMul.CLMUL.Prim.binaryPolyMulThunk) arg
+      , bench "prim XMM" $ nf (uncurry BinaryPolyMul.CLMUL.Prim.binaryPolyMulXMM) arg
       ]
     ]

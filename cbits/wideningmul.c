@@ -1,4 +1,5 @@
 #include <stdint.h>
+#include <x86intrin.h>
 
 extern uint64_t wideningMul_with_ptr(uint64_t a, uint64_t b, uint64_t *outHigh)
 {
@@ -23,4 +24,14 @@ extern uint64_t wideningMul_hi(uint64_t a, uint64_t b)
 extern unsigned __int128 wideningMul_uint128(uint64_t a, uint64_t b)
 {
     return (unsigned __int128)a * (unsigned __int128)b;
+}
+
+extern __m128i wideningMul_xmm(uint64_t a, uint64_t b)
+{
+    union {
+        __m128i m128;
+        unsigned __int128 u128;
+    } u;
+    u.u128 = (unsigned __int128)a * (unsigned __int128)b;
+    return u.m128;
 }

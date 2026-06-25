@@ -2,7 +2,7 @@
 {-# LANGUAGE GHCForeignImportPrim #-}
 {-# LANGUAGE UnliftedFFITypes #-}
 module BinaryPolyMul.CLMUL.Prim where
-import GHC.Exts (Word64#)
+import GHC.Exts (Word64#, Word64X2#, unpackWord64X2#)
 import GHC.Word (Word64(W64#))
 import Data.WideWord.Word128 -- wide-word
 
@@ -20,4 +20,12 @@ foreign import prim "binaryPolyMul_clmul_thunk"
 binaryPolyMulThunk :: Word64 -> Word64 -> Word128
 binaryPolyMulThunk (W64# a) (W64# b)
   = case binaryPolyMul_thunk# a b of
+      (# lo, hi #) -> Word128 (W64# hi) (W64# lo)
+
+foreign import prim "binaryPolyMul_prim_xmm"
+  binaryPolyMul_prim_xmm# :: Word64# -> Word64# -> Word64X2#
+
+binaryPolyMulXMM :: Word64 -> Word64 -> Word128
+binaryPolyMulXMM (W64# a) (W64# b)
+  = case unpackWord64X2# (binaryPolyMul_prim_xmm# a b) of
       (# lo, hi #) -> Word128 (W64# hi) (W64# lo)

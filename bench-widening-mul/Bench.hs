@@ -24,6 +24,7 @@ main = do
         , bench "accursedUnutterablePerformIO" $ nf (uncurry WM.CFFI.Safe.wideningMulWithPtrInline) arg
         ]
       , bench "calling twice" $ nf (uncurry WM.CFFI.Safe.wideningMulCallingTwice) arg
+      , bench "XMM" $ nf (uncurry WM.CFFI.Safe.wideningMulXMM) arg
       ]
     , bgroup "unsafe FFI"
       [ bgroup "pointer"
@@ -32,6 +33,7 @@ main = do
         , bench "accursedUnutterablePerformIO" $ nf (uncurry WM.CFFI.Unsafe.wideningMulWithPtrInline) arg
         ]
       , bench "calling twice" $ nf (uncurry WM.CFFI.Unsafe.wideningMulCallingTwice) arg
+      , bench "XMM" $ nf (uncurry WM.CFFI.Unsafe.wideningMulXMM) arg
       ]
     , bgroup "inline-c (safe FFI)"
       [ bgroup "pointer"
@@ -53,4 +55,5 @@ main = do
       ]
     , bench "foreign import prim" $ nf (uncurry WM.Prim.wideningMul) arg
     , bench "prim thunk" $ nf (uncurry WM.Prim.wideningMulThunk) arg
+    , bench "prim XMM" $ nf (uncurry WM.Prim.wideningMulXMM) arg
     ]

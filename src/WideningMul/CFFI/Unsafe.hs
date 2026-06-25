@@ -1,12 +1,16 @@
 {-# LANGUAGE BangPatterns #-}
+{-# LANGUAGE MagicHash #-}
+{-# LANGUAGE UnboxedTuples #-}
+{-# LANGUAGE UnliftedFFITypes #-}
 module WideningMul.CFFI.Unsafe where
-import Data.Word
+import GHC.Word (Word64(W64#))
 import Data.WideWord.Word128
 import Foreign.Ptr (Ptr)
 import Foreign.Storable (peek)
 import Foreign.Marshal.Alloc as Marshal (alloca)
 import System.IO.Unsafe (unsafePerformIO, unsafeDupablePerformIO)
 import ReallyUnsafe (accursedUnutterablePerformIO)
+import GHC.Exts (Word64X2#, unpackWord64X2#)
 
 foreign import ccall unsafe "wideningMul_with_ptr"
   c_wideningMul_with_ptr :: Word64 -> Word64 -> Ptr Word64 -> IO Word64
@@ -40,3 +44,10 @@ foreign import ccall unsafe "wideningMul_hi"
 
 wideningMulCallingTwice :: Word64 -> Word64 -> Word128
 wideningMulCallingTwice !a !b = Word128 (c_wideningMul_hi a b) (c_wideningMul_lo a b)
+
+foreign import ccall unsafe "wideningMul_xmm"
+  c_wideningMul_xmm :: Word64 -> Word64 -> Word64X2#
+
+wideningMulXMM :: Word64 -> Word64 -> Word128
+wideningMulXMM !a !b = case unpackWord64X2# (c_wideningMul_xmm a b) of
+  (# lo, hi #) -> Word128 (W64# hi) (W64# lo)
