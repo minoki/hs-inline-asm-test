@@ -1,5 +1,4 @@
 .stack-work/
-inline-asm-test.cabal
 *~
 *.hi
 src/**/*.s
