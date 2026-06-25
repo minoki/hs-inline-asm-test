@@ -29,11 +29,11 @@ library:
   source-dirs: src
   c-sources:
   - cbits/wideningmul.c
-  - cbits/mulq-prim.s
+  - cbits/mulq-prim.S
   - cbits/binarypolymul-portable.c
   - cbits/binarypolymul-clmul.c
-  - cbits/clmul-prim.s
-  - cbits/thunk.s
+  - cbits/clmul-prim.S
+  - cbits/thunk.S
   ghc-options: -optc -mpclmul # for inline-c
   cc-options: -mpclmul # for cbits/binarypolymul-clmul.c
 
