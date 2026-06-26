@@ -7,7 +7,7 @@ Some attempt to mimic 'inline assembly' in Haskell using `foreign import prim`.
 - [CLMUL](https://software.intel.com/sites/landingpage/IntrinsicsGuide/#text=clmul&expand=641,676): Carry-less multiplication of two 64-bit integers, resulting a 128-bit integer
     - criterion report: [plain text](binary-poly-mul-report.txt), [HTML](binary-poly-mul-report.html)
 
-Benchmark is run on my MacBook Pro (Late 2013).
+Benchmark is run on WSL2 on my Zen4 machine.
 
 See also:
 
